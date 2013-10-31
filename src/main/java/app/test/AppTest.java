@@ -10,7 +10,8 @@ public class AppTest {
 
     public static void main(String[] args) {
         //AppTest.getAll();
-        AppTest.listServicio();
+        AppTest.getServicio();
+        //AppTest.addServicio();
     }
 
     public static void getAll() {
@@ -23,9 +24,7 @@ public class AppTest {
         }
     }
 
-    
-    
-    
+      
     
     public static void addServicio() {
         ApplicationContext context = new ClassPathXmlApplicationContext("database.xml");
@@ -33,21 +32,22 @@ public class AppTest {
         
         Servicio servicio = servicioDAO.get(new Servicio(1l));
         
+        servicio.setDescripcion("Alquiler de pelotas");
+        servicio.setCostoHora(332.5d);
+        servicioDAO.save(servicio);
         
-        
-        
-        
+        System.out.println(servicio.getId()+" "+servicio.getDescripcion()+" "+servicio.getCostoHora());
         
     }
     
     
     
-    public static void listServicio() {
+    public static void getServicio() {
         ApplicationContext context = new ClassPathXmlApplicationContext("database.xml");
         ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
 
 
-        Servicio servicio = servicioDAO.get(new Servicio(1l));
+        Servicio servicio = servicioDAO.get(new Servicio(4l));
 
         System.out.println(servicio.getId() + " " + servicio.getDescripcion()
                 + " " + servicio.getCostoHora());
