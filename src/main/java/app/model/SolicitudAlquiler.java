@@ -1,5 +1,4 @@
 package app.model;
-import java.util.Date;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
 
 @Entity
 @Table(name = "solicitud_alquiler")
@@ -26,9 +24,8 @@ public class SolicitudAlquiler implements Serializable {
     @Column(name = "hora_fin")
     private  String horaFin;
 
-    @Column(name = "fecha")
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date fecha;
+    @Column(name = "dia")
+    private int dia;
 
     @Column(name = "servicios")
     private String servicios;
@@ -74,14 +71,15 @@ public class SolicitudAlquiler implements Serializable {
         this.horaFin = horaFin;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }	
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public int getDia() {
+        return dia;
     }
 
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    
     public String getServicios() {
         return servicios;
     }	
