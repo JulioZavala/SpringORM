@@ -1,6 +1,10 @@
 package app.test;
 
+import app.dao.CampoDAO;
+import app.dao.LocalDAO;
 import app.dao.ServicioDAO;
+import app.model.Campo;
+import app.model.Local;
 import app.model.Servicio;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
@@ -9,20 +13,40 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AppTest {
 
     public static void main(String[] args) {
-        //AppTest.getAll();
+        AppTest.getAll();
         //AppTest.getServicio();
         //AppTest.addServicio();
-        AppTest.updateServicio();
+        //AppTest.updateServicio();
         //AppTest.deleteServicio();
     }
 
     public static void getAll() {
         ApplicationContext context = new ClassPathXmlApplicationContext("database.xml");
-        ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
+        CampoDAO campoDAO = (CampoDAO) context.getBean("campoDAO");
+        LocalDAO localDAO = (LocalDAO) context.getBean("localDAO");
 
-        List<Servicio> servicios = servicioDAO.list();
-        for (Servicio servicio : servicios) {
-            System.out.println(servicio.getDescripcion() + " " + servicio.getCostoHora());
+        /*
+        List<Campo> campos = campoDAO.list();
+        for (Campo campo : campos) {
+            System.out.println(campo.getId() + " " + campo.getDescripcion() + " - " + campo.getLocal().getDescripcion() + " " + campo.getCostoHora());
+        }
+        */
+        
+        /*
+        List<Local> locales = localDAO.list();
+        for (Local local : locales) {
+            List<Campo> campos = local.getCampo();
+            for (Campo campo : campos) {
+                System.out.println(local.getId()+ " " + local.getDescripcion() + " - " + campo.getDescripcion() + " " + campo.getCostoHora());
+            }
+        }
+        */
+        
+        Local local = localDAO.get(new Local(2l));
+        List<Campo> campos = campoDAO.allByLocal(local);
+        System.out.println("---" + local.getDescripcion() +"---");
+        for (Campo campo : campos) {
+            System.out.println(campo.getDescripcion() + " " + campo.getCostoHora());
         }
     }
 
@@ -61,7 +85,7 @@ public static void updateServicio() {
         ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
         
         
-        Servicio servicio = new Servicio(3l);
+        Servicio servicio = servicioDAO.get(new Servicio(3l))  ;
         servicio.setCostoHora(15.4);
         servicioDAO.update(servicio);
         
