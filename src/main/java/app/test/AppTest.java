@@ -10,8 +10,10 @@ public class AppTest {
 
     public static void main(String[] args) {
         //AppTest.getAll();
-        AppTest.getServicio();
+        //AppTest.getServicio();
         //AppTest.addServicio();
+        AppTest.updateServicio();
+        //AppTest.deleteServicio();
     }
 
     public static void getAll() {
@@ -32,8 +34,8 @@ public class AppTest {
         
         Servicio servicio = servicioDAO.get(new Servicio(1l));
         
-        servicio.setDescripcion("Alquiler de pelotas");
-        servicio.setCostoHora(332.5d);
+        servicio.setDescripcion("Alquiler de zapatos");
+        servicio.setCostoHora(100.5d);
         servicioDAO.save(servicio);
         
         System.out.println(servicio.getId()+" "+servicio.getDescripcion()+" "+servicio.getCostoHora());
@@ -47,9 +49,33 @@ public class AppTest {
         ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
 
 
-        Servicio servicio = servicioDAO.get(new Servicio(4l));
+        Servicio servicio = servicioDAO.get(new Servicio(2l));
 
         System.out.println(servicio.getId() + " " + servicio.getDescripcion()
                 + " " + servicio.getCostoHora());
     }
+
+
+public static void updateServicio() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("database.xml");
+        ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
+        
+        
+        Servicio servicio = new Servicio(1l);
+        servicio.setCostoHora(15.4);
+        servicioDAO.update(servicio);
+        
+    }
+
+public static void deleteServicio() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("database.xml");
+        ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
+        
+        
+        Servicio servicio = new Servicio(3l);
+        servicioDAO.delete(servicio);
+        
+    }
+
+
 }

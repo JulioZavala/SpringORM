@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository("servicioDAO")
 public class ServicioDAOH extends BaseHibernateDAO implements ServicioDAO {
@@ -22,14 +23,17 @@ public class ServicioDAOH extends BaseHibernateDAO implements ServicioDAO {
         return (Servicio) criteria.uniqueResult();
     }
 
+    @Transactional
     public void save(Servicio t) {
         this.getSession().save(t);
     }
 
+    @Transactional
     public void update(Servicio t) {
         this.getSession().update(t);
     }
 
+    @Transactional
     public void delete(Servicio t) {
         this.getSession().delete(t);
     }
