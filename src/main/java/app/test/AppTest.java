@@ -34,7 +34,7 @@ public class AppTest {
         
         Servicio servicio = servicioDAO.get(new Servicio(1l));
         
-        servicio.setDescripcion("Alquiler de zapatos");
+        servicio.setDescripcion("Alquiler de raquetas");
         servicio.setCostoHora(100.5d);
         servicioDAO.save(servicio);
         
@@ -61,7 +61,7 @@ public static void updateServicio() {
         ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
         
         
-        Servicio servicio = new Servicio(1l);
+        Servicio servicio = new Servicio(3l);
         servicio.setCostoHora(15.4);
         servicioDAO.update(servicio);
         

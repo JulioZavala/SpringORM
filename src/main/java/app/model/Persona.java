@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,14 +41,14 @@ public class Persona implements Serializable {
     @Column(name = "direccion")
     private String direccion;
     
-    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
-    private List<Usuario> usuario;
+    @OneToOne(mappedBy = "persona", fetch = FetchType.LAZY)
+    private Usuario usuario;
     
-    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
-    private List<Socio> socio;
+    @OneToOne(mappedBy = "persona", fetch = FetchType.LAZY)
+    private Socio socio;
     
-    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
-    private List<Administrador> administrador;
+    @OneToOne(mappedBy = "persona", fetch = FetchType.LAZY)
+    private Administrador administrador;
 
     public Persona() {
     }
@@ -120,30 +121,31 @@ public class Persona implements Serializable {
         this.direccion = direccion;
     }
 
-    public List<Usuario> getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(List<Usuario> usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
-          
-    public List<Socio> getSocio() {
+    public Socio getSocio() {
         return socio;
     }
 
-    public void setSocio(List<Socio> socio) {
+    public void setSocio(Socio socio) {
         this.socio = socio;
     }
 
-    public List<Administrador> getAdministrador() {
+    public Administrador getAdministrador() {
         return administrador;
     }
 
-    public void setAdministrador(List<Administrador> administrador) {
+    public void setAdministrador(Administrador administrador) {
         this.administrador = administrador;
     }
+
+    
     
     
     
