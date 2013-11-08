@@ -13,10 +13,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AppTest {
 
     public static void main(String[] args) {
-        AppTest.getAll();
+        //AppTest.getAll();
         //AppTest.getServicio();
         //AppTest.addServicio();
-        //AppTest.updateServicio();
+        AppTest.updateServicio();
         //AppTest.deleteServicio();
     }
 
@@ -42,7 +42,7 @@ public class AppTest {
         }
         */
         
-        Local local = localDAO.get(new Local(2l));
+        Local local = localDAO.get(new Local(4l));
         List<Campo> campos = campoDAO.allByLocal(local);
         System.out.println("---" + local.getDescripcion() +"---");
         for (Campo campo : campos) {
@@ -58,8 +58,8 @@ public class AppTest {
         
         Servicio servicio = servicioDAO.get(new Servicio(1l));
         
-        servicio.setDescripcion("Alquiler de raquetas");
-        servicio.setCostoHora(100.5d);
+        servicio.setDescripcion("Alquiler de sombreros");
+        servicio.setCostoHora(2.5d);
         servicioDAO.save(servicio);
         
         System.out.println(servicio.getId()+" "+servicio.getDescripcion()+" "+servicio.getCostoHora());
@@ -73,7 +73,7 @@ public class AppTest {
         ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
 
 
-        Servicio servicio = servicioDAO.get(new Servicio(2l));
+        Servicio servicio = servicioDAO.get(new Servicio(1l));
 
         System.out.println(servicio.getId() + " " + servicio.getDescripcion()
                 + " " + servicio.getCostoHora());
@@ -85,8 +85,9 @@ public static void updateServicio() {
         ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
         
         
-        Servicio servicio = servicioDAO.get(new Servicio(3l))  ;
-        servicio.setCostoHora(15.4);
+        Servicio servicio = servicioDAO.get(new Servicio(5l))  ;
+        
+        servicio.setCostoHora(10.4d);
         servicioDAO.update(servicio);
         
     }
@@ -96,7 +97,7 @@ public static void deleteServicio() {
         ServicioDAO servicioDAO = (ServicioDAO) context.getBean("servicioDAO");
         
         
-        Servicio servicio = new Servicio(3l);
+        Servicio servicio = new Servicio(7l);
         servicioDAO.delete(servicio);
         
     }
